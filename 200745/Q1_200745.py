@@ -11,9 +11,40 @@ import numpy as np
 def dist(p1, p2):
     return ((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2)
 
-# Usage
+def dist_color(c1, c2):
+    return ((c1[0]-c2[0])**2 + (c1[1]-c2[1])**2 + (c1[2]-c2[2])**2)**0.5
+
+def clean_image(image):
+    for i in range(0, image.shape[0]):
+        for j in range(0, image.shape[1]):
+            orange = dist_color(image[i][j], [51, 153, 255])
+            white = dist_color(image[i][j], [255, 255, 255])
+            green = dist_color(image[i][j], [0, 128, 0])
+            blue = dist_color(image[i][j], [255, 0, 0])
+            black = dist_color(image[i][j], [0, 0, 0])
+
+            min_dist = min(orange, white, green, blue, black)
+            if min_dist == orange:
+                image[i][j] = [51, 153, 255]
+            elif min_dist == white:
+                image[i][j] = [255, 255, 255]
+            elif min_dist == green:
+                image[i][j] = [0, 128, 0]
+            elif min_dist == blue:
+                image[i][j] = [255, 0, 0]
+            elif min_dist == black:
+                image[i][j] = image[i+3][j+3]      
+    return image
+
+def show_image(image):
+    cv2.imshow('image', image)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+    # print("Done")
+
 def solution(image_path):
     image= cv2.imread(image_path)
+    # print(image)
     ######################################################################
     ######################################################################
     #####  WRITE YOUR CODE BELOW THIS LINE ###############################
@@ -78,15 +109,12 @@ def solution(image_path):
     image = cv2.resize(image, (600,600))
 
     ######################################################################
-
+    # image = clean_image(image)
     return image
 
 
-# def show_image(image):
-#     cv2.imshow('image', image)
-#     cv2.waitKey(0)
-#     cv2.destroyAllWindows()
-#     # print("Done")
-
 # ## Run function
+show_image(solution("Q1/test/1.png"))
 # show_image(solution("Q1/test/2.png"))
+# show_image(solution("Q1/test/3.png"))
+# show_image(solution("Q1/test/4.png"))
