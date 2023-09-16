@@ -5,20 +5,15 @@ import numpy as np
 import librosa as lr
 # import matplotlib.pyplot as plt
 
-
-
 # def show_plot(matrix):
 #     plt.imshow(matrix, aspect="auto")
 #     plt.colorbar()
 #     plt.show()
 
-
 # def show_image(matrix):
 #     plt.imshow(matrix, cmap="gray")
 #     plt.show()
 #     # print("Done")
-
-
 
 def solution(audio_path):
     ############################
@@ -71,12 +66,6 @@ def solution(audio_path):
 
 
 # print(solution("Q2/test/cardboard1.mp3"))
-
-
 # print(solution("Q2/test/cardboard2.mp3"))
-
-
 # print(solution("Q2/test/metal_banging1.mp3"))
-
-
 # print(solution("Q2/test/metal_banging2.mp3"))

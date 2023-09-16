@@ -110,8 +110,6 @@ def make_image_square(image):
     # print(square_image.shape)
     return square_image
 
-
-
 def solution(image_path):
     ############################
     ############################
@@ -175,7 +173,7 @@ def solution(image_path):
     ############################
     return image
 
-show_image(solution("Q3/test/3_a.png"))
-show_image(solution("Q3/test/3_b.png"))
-show_image(solution("Q3/test/3_c.png"))
-show_image(solution("Q3/test/3_d.png"))
+# show_image(solution("Q3/test/3_a.png"))
+# show_image(solution("Q3/test/3_b.png"))
+# show_image(solution("Q3/test/3_c.png"))
+# show_image(solution("Q3/test/3_d.png"))

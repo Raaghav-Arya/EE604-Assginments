@@ -114,7 +114,7 @@ def solution(image_path):
 
 
 # ## Run function
-show_image(solution("Q1/test/1.png"))
+# show_image(solution("Q1/test/1.png"))
 # show_image(solution("Q1/test/2.png"))
 # show_image(solution("Q1/test/3.png"))
 # show_image(solution("Q1/test/4.png"))
