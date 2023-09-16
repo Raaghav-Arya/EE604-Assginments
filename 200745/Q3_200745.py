@@ -36,9 +36,9 @@ def flipped(image):
     for c in cnts:
         miny = min(miny, c[0][0][1])
     # show_points(gray, (0, miny), (image.shape[1]//2, miny))
-    above = (np.sum(thresh[:miny, :])) / 255
-    # print(above)
-    if above > 450:
+    above = ((np.sum(thresh[:miny, :])) / 255)/(image.shape[0]*image.shape[1])*10000
+    print(above)
+    if above > 30:
         return True
 
     return False
@@ -175,7 +175,7 @@ def solution(image_path):
     ############################
     return image
 
-# show_image(solution("Q3/test/3_a.png"))
-# show_image(solution("Q3/test/3_b.png"))
-# show_image(solution("Q3/test/3_c.png"))
-# show_image(solution("Q3/test/3_d.png"))
+show_image(solution("Q3/test/3_a.png"))
+show_image(solution("Q3/test/3_b.png"))
+show_image(solution("Q3/test/3_c.png"))
+show_image(solution("Q3/test/3_d.png"))
