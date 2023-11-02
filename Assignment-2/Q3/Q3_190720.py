@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-def solution(audio_path):
+def solution(image_path):
     ############################
     ############################
 
