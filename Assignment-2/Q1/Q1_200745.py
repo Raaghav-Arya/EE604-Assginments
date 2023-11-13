@@ -9,6 +9,11 @@ import numpy as np
 #     plt.axis('off')
 #     plt.tight_layout()
 #     plt.show()
+
+# def show_contour(img, contour):
+#     ((x, y), radius) = cv2.minEnclosingCircle(contour)
+#     cv2.circle(img, (int(x), int(y)), int(radius), (0, 255, 0), 2)
+#     show_image(img)
     
 
 def Threshold_hsv(image):
@@ -33,11 +38,6 @@ def poly_enclose(closed_mask):
     enc_poly = cv2.approxPolyDP(largest_contour, epsilon, True)
 
     return enc_poly
-
-# def show_contour(img, contour):
-#     ((x, y), radius) = cv2.minEnclosingCircle(contour)
-#     cv2.circle(img, (int(x), int(y)), int(radius), (0, 255, 0), 2)
-#     show_image(img)
 
 def find_sun(img):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
