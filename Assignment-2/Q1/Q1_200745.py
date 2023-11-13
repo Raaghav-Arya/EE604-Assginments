@@ -68,7 +68,7 @@ def find_sun(img):
 
 def solution(image_path):
     image = cv2.imread(image_path)
-    show_image(image)
+    # show_image(image)
     if(find_sun(image) == 1):
         return np.zeros_like(image)
     mask = Threshold_hsv(image)
