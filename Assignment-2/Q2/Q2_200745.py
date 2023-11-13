@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 # import matplotlib.pyplot as plt
 # import time
+
 # def show_image(image):
 #     image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 #     fig = plt.figure(frameon=False)
@@ -24,6 +25,7 @@ def giw(neighborhood_i, pixel_i, sigmaColor):
     intensity_weights = np.exp(-np.sum(intensity_diff ** 2, axis=2) / (2 * sigmaColor ** 2))
 
     return intensity_weights
+
 def bilateral_filter(image_d, image_i, d, sigmaColor, sigmaSpace):
     rows, cols, channels = image_d.shape
     result = np.zeros_like(image_d, dtype=np.float32)
@@ -51,6 +53,7 @@ def bilateral_filter(image_d, image_i, d, sigmaColor, sigmaSpace):
     ret = result.astype(np.uint8)
     show_image(ret)
     return ret
+
 def solution(image_path_a, image_path_b):
     ############################
     ############################
