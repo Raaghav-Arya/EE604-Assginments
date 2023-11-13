@@ -16,13 +16,14 @@ def dice_coefficient(prediction, ground_truth):
   Returns:
     The Dice coefficient.
   """
-
-  intersection = np.sum(prediction & ground_truth)
-  sum_prediction = np.sum(prediction)
-  sum_ground_truth = np.sum(ground_truth)
-
-  return (2 * intersection) / (sum_prediction + sum_ground_truth)
-
+  matched_pixels = 0
+  total_prediction_pixels = prediction.shape[0] * prediction.shape[1]
+  total_ground_truth_pixels = ground_truth.shape[0] * ground_truth.shape[1]
+  for i in range(prediction.shape[0]):
+      for j in range(prediction.shape[1]):
+          if np.all(prediction[i][j] == ground_truth[i][j]):
+              matched_pixels += 1
+  return 2*(matched_pixels) / ( total_prediction_pixels + total_ground_truth_pixels)
 
 def test_student_function(module_name, function_name):
     try:
@@ -44,7 +45,7 @@ def test_student_function(module_name, function_name):
             ground_truth_image=cv2.imread(os.path.join(os.path.join(os.getcwd(),'ground truth'),test_image_name))
             # print(ground_truth_image)
             score = dice_coefficient(output_image, ground_truth_image)
-            print(score)
+            # print(f"Test image name: {test_image_name} and score: {score}")
             total_score += score
             is_passed=True
 
@@ -66,6 +67,7 @@ if __name__ == "__main__":
                 match = re.match(r"Q1_(\d+).py", student_file)   
                 if match:
                     roll_number = match.groups()[0]
+                    print("Roll Number", roll_number)
                     results = test_student_function(student_file[:-3], "solution")
                     csv_writer.writerow([ roll_number,results])
             except Exception as e:

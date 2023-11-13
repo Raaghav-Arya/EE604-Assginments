@@ -6,6 +6,15 @@ import importlib
 import shutil
 import time
 import csv
+from tqdm import tqdm
+
+from skimage.metrics import structural_similarity as ssim
+from timeout_decorator import timeout
+import time
+
+@timeout(200)
+def evaluate_student_code(student_function,test_image_path_a,test_image_path_b):
+    return student_function(test_image_path_a,test_image_path_b)
 
 def test_student_function(module_name, function_name,roll_number):
     try:
@@ -32,11 +41,11 @@ def test_student_function(module_name, function_name,roll_number):
         new_filename = f"{base}_b.{ext}"
         test_image_path_b = os.path.join(os.path.join(os.getcwd(),'ultimate_test'),new_filename)
         start_time = time.time()
-        output_image = student_function(test_image_path_a,test_image_path_b)
+        output_image = evaluate_student_code(student_function,test_image_path_a,test_image_path_b)
         end_time = time.time()
         output_path = os.path.join(roll_number, f"{base}.{ext}")
         cv2.imwrite(output_path, output_image)
-        total_time = end_time - start_time
+        total_time += end_time - start_time
     return total_time
 
 if __name__ == "__main__":
