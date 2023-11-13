@@ -51,7 +51,7 @@ def bilateral_filter(image_d, image_i, d, sigmaColor, sigmaSpace):
                 result[i, j, c] = np.sum(weights * neighborhood_d[:, :, c])
             
     ret = result.astype(np.uint8)
-    show_image(ret)
+    # show_image(ret)
     return ret
 
 def solution(image_path_a, image_path_b):
@@ -67,8 +67,6 @@ def solution(image_path_a, image_path_b):
     imageb = cv2.imread(image_path_b)
     
     ret = bilateral_filter(imagea, imageb, 9, 5, 30)
-
-        
     return ret
 
 # st=time.time()
