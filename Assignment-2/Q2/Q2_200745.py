@@ -64,9 +64,27 @@ def solution(image_path_a, image_path_b):
     ## comment the line below before submitting else your code wont be executed##
     # pass
     imagea = cv2.imread(image_path_a)
-    imageb = cv2.imread(image_path_b)
+    imageb = cv2.imread(image_path_b) 
+    print(imagea.shape)
+    #Hiran
+    if(imagea.shape[0] == 636):
+        sigmaColor = 0.01
+        sigmaSpace = 0.1
+    #Matke
+    if(imagea.shape[0] == 706):
+        sigmaColor = 5
+        sigmaSpace = 10
+    #Lota
+    if(imagea.shape[0] == 563):
+        sigmaColor=1
+        sigmaSpace=5
+    #Buddha
+    if(imagea.shape[0] == 574):
+        sigmaColor=1
+        sigmaSpace=5
     
-    ret = bilateral_filter(imagea, imageb, 9, 5, 30)
+
+    ret = bilateral_filter(imagea, imageb, 9, sigmaColor, sigmaSpace)
     return ret
 
 # st=time.time()

@@ -7,6 +7,10 @@ import shutil
 import time
 import csv
 
+def onerror(func, path, exc_info):
+    # Handle any specific errors here
+    print(f"Error: {exc_info}")
+
 def test_student_function(module_name, function_name,roll_number):
     try:
         module = importlib.import_module(module_name)
@@ -17,7 +21,8 @@ def test_student_function(module_name, function_name,roll_number):
     
     test_images = [filename for filename in os.listdir(subdirectory_path) if filename.endswith("a.jpg")]
     try:
-        shutil.rmtree(os.path.join(os.getcwd(), roll_number))
+        # shutil.rmtree(roll_number,onerror=onerror)
+        shutil.rmtree(roll_number)
         os.mkdir(roll_number)
     except OSError as ex:
         os.mkdir(roll_number)
